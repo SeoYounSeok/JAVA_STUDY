@@ -211,4 +211,28 @@ System.out.println("래퍼클래스.equals(래퍼클래스) : " + (number1.equal
 ```
 
 ```
-##### 자바 버전별 차이(버전 업의 차이)
+##### 자바 버전별 차이(버전 업의 차이) 
+```
+JAVA 8 (2014)
+- 스트림 API
+- 메서드에 코드를 전달하는 기법
+- 인터페이스의 디폴트 메서드
+- 2개의 버전으로 나뉨 Oracle JDK, Open JDK
+- Optional
+- 날짜 및 시간 API
+
+JAVA 11(2018)
+- Oracle JDK와 Open JDK 통합
+- Open JDK 가 구독형 유료 모델로 전환
+- 서드파티 JDK로 이전 필요
+```
+
+##### JRE 및 JDK 차이점
+```
+JRE는 Java Runtime Environment 이고, JDK는 JAVA Development Kit
+
+* 자바 실행에만 관심이 있는 경우, JRE 를 다운로드 한다.
+* 개발을 진행하려면, JDK를 다운받는 것이 일반적이다.
+
+자바 8까지는 JDK + JRE 별도 다운로드를 제공하였지만, 자바 9부터는 항상 JDK를 다운 받도록 하였다.
+```
