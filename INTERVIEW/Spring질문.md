@@ -158,7 +158,61 @@ class 이자계산 {
 ![image](https://user-images.githubusercontent.com/43161245/165766231-73eb7810-8eff-486a-bb8f-a3ee539e0541.png)
 
 ##### 필터와 인터셉트 차이
-##### 스프링 MVC 구조 흐름
+```
+- 컨트롤러에 들어가기 전 작업을 처리하기 위해 사용하는 공통점이 있지만, 호출되는 시점에서 차이가 있습니다.
+- 실행되는 시점에서 차이가 있습니다.
+- 필터는 DispatcherServlet 으로 요청이 가기 전에 실행 되고, 인터셉터는 Controller 로 요청이 가기 전에 실행됩니다.
+
+* 설정 위치
+- Filter는 web.xml , Interceptor는 spring-servlet.xml
+```
+![image](https://user-images.githubusercontent.com/43161245/165873424-d5164673-c7ca-492d-9322-b84a5c4887f5.png)
+
+##### 스프링 MVC 구조 흐름 [sorzzzy 블로그](https://velog.io/@sorzzzzy/Spring-Boot4-5.-%EC%8A%A4%ED%94%84%EB%A7%81-MVC-%EA%B5%AC%EC%A1%B0-%EC%9D%B4%ED%95%B4)  [코딩노트 블로그](https://codingnotes.tistory.com/28)  [hunit 블로그](https://hunit.tistory.com/189)
+![image](https://user-images.githubusercontent.com/43161245/165874887-8fe6b511-e8a2-48a2-9648-e62a5467693c.png)
+![image](https://user-images.githubusercontent.com/43161245/165875039-32420fa6-d52d-4237-b986-ebdc5bb2e2aa.png)
+![image](https://user-images.githubusercontent.com/43161245/165875468-a4592cde-41cd-4da7-97ab-6712c6d79ba2.png)
+```
+1. 클라이언트의 모든 요청을 Dispatcher Servlet이라는 Servlet Class 가 받는다.
+
+2. Dispatcher Servlet(Front Controller) 은 요청 URL 을 Handler Mapping 에게 전달하고, 
+   현재 요청에 알맞는 Controoler 와 Method 에 대한 정보를 알아낸다. 
+
+3. Dispatcher Servlet은 HandlerAdapter에게 요청 처리를 위임한다. 
+
+4. HandlerAdapter는 Controller 와 해당 메서드를 실행한다.
+
+5. Controller 는 비지니스 로직을 처리하고, 그 결과를 바탕으로 뷰(ex.JSP)에 전달될 객체를 Model 객체에 저장한다.
+   - Dispatcher Servlet에게 View name을 리턴한다.
+   - Model : Controller에서 View 로 넘겨줄 객체가 저장되는 곳
+   
+6. Dispatcher Servlet은 view name 을 View Resoler 에게 전달하여 View 객체를 얻는다.
+   - View Resolver는 전달된 정보를 바탕으로 사용자에게 보여줄 View가 무엇인지 결정한다.
+
+7. Dispatcher Servlet 은 View 객체에 화면 표시를 의뢰한다.
+
+8. View 객체는 해당하는 뷰(ex. JSP, Thymeleaf)를 호출하며, 뷰는 Model 객체에서 화면 표시에 필요한 객체를 가져와 화면 표시를 처리한다.
+```
+![image](https://user-images.githubusercontent.com/43161245/165875069-d4d75631-ffd5-4b0e-8f9d-cdaa94b24489.png)
+```
+1. 웹브라우저에게 정보요청을 받은 디스패쳐서블릿은 어느 컨트롤러에 해당 요청을 전송할지 결정 
+
+2. 디스패쳐 서블릿은 핸들러 매핑에 어느 컨트롤러를 사용할건지 물어봄. (URL로 링크)
+
+3. 결정된 컨트롤러는 해당요청을 수행하게 됨
+
+4. 해당요청을 처리한 컨트롤러는 디스패쳐서블릿에 결과를 보냄. 이 과정에서 Model이 생성되어 View(JSP)에서 같이 사용됨 
+
+5. ModelAndView는 실제 JSP정보를 갖고 있지 않기 때문에 뷰리졸버가 실제 JSP이름으로 변환하여 해당 view를 검색함.
+
+6. 검색한 결과를 View에 전송
+
+7. View는 모든 과정에서 처리된 결과를 화면으로 표현함
+
+8. 마지막으로 디스패쳐서블릿이 웹브라우저에 최종결과를 출력
+```
+
+
 ##### 스프링과 스프링 부트 차이
 ```
 1. 라이브러리 관리 자동화
@@ -181,6 +235,16 @@ class 이자계산 {
   - 부트는 웹 애플리케이션 JAR 파일로 패키징하여 사용할 수 있다.
 ```
 ##### 스프링 어노테이션
+```
+어노테이션은 메타데이터, 코드를 설명하기 위한 데이터라고 정의할 수 있다.
+@를 이용한 주석, 자바 코드에 주석을 달아 특별한 의미를 부여한 것이다.
+
+컴파일러가 특정 오류를 억제하도록 지시하는 것과 같이
+프로그램 코드의 일부가 아닌 프로그램에 대한 데이터를 제공, 코드에 정보를 추가하는 정형화된 방법이다.
+
+@Override 어노테이션 처럼 컴파일러를 위한 정보를 제공하기 위한 용도이다.
+@Controller 어노테이션 처럼 런타임에 리플렉션을 이용해 특수 기능을 추가하는 위한 용도이다.
+```
 ##### 어노테이션 종류
 ##### 스프링 버전별 기능
 ##### MVC 1과 MVC 2의 차이
@@ -204,11 +268,65 @@ JPA는 ORM을 위해서 자바에서 제공하는 API입니다.
 하지만 직접 SQL을 호출하는 것보다 조금 느립니다.
 그리고 복잡한 쿼리같은 것은 메소드로 처리가 힘들다는 단점이 있습니다.(다중 조인)
 ```
+##### SQL Mapper
+```
+- Object와 SQL 필드를 매핑하여 데이터를 객체화 하는 기술
+- SQL문을 직접 작성하고 쿼리 수행결과를 어떠한 객체에 매핑하여 줄 지 바인딩하는 방법, 즉 SQL 의존적인 방법
+ex) JdbcTemplate, Mabatis
+```
 ##### Mybatis란?
-##### Mybatis, JPA 차이
-##### Spring JDBC
-##### DAO, DTO 란?
+```
+SQL 을 xml 파일로 분리하여 관리하고, SQL결과와 객체 인스턴스의 매핑을 도와주는 역할을 수행한다.
+동적쿼리를 지원하여 다이나믹하게 변경되는 쿼리 작성가능.
 
+단점
+- SQL을 개발자가 직접 작성하는 문제
+- DBMS에 종속적인 문제
+- 비슷한 쿼리를 반복적으로 작성해야하는 문제
+- 객체와 객체형 테이블 구조간 패러다임 불일치 발생
+```
+##### Spring Security
+```
+- Spring 기반의 애플리케이션의 보안(인증과 권한, 인가 등)을 담당하는 스프링 하위 프레임워크
+
+- '인증'과 '권한'에 대한 부분을 Filter 흐름에 따라 처리
+
+- Spring Security는 보안과 관련해서 체계적으로 많은 옵션을 제공해주기 때문에
+  개발자 입장에서는 일일이 보안관련 로직을 작성하지 않아도 된다는 장점이 있다.
+```
+##### Mybatis, JPA 차이
+##### JDBC
+```
+JDBC(Java Database Connectivity)는 DB에 접근할 수 있도록 JAVA에서 제공하는 API이다.
+JDBC는 데이터베이스에서 자료를 쿼리하거나 업데이트하는 방법을 제공합니다.
+
+* JDBC API의 문제점
+  - 쿼리를 실행하기 전과 후에 많은 코드를 작성해야한다. ex) 연결 생성, 명령문, ResultSet 닫기 등
+  - 데이터베이스 로직에서 예외 처리 코드를 수행해야 한다.
+  - 트랜잭션을 처리해야한다.
+  - 이러한 모든 코드를 반복하는 것으로, 시간이 낭비된다.
+```
+##### Spring JDBC
+```
+JDBC 의 장점과 단순성을 그래도 유지하면서도 기존 JDBC의 단점을 극복할 수 있게 해주고,
+간결한 형태의 API 사용법을 제공하며, JDBC API에서 지원되지 않는 편리한 기능을 제공.
+
+- Spring JDBC는 반복적으로 해야하는 많은 작업들을 대신 해줌.
+- Spring JDBC를 사용할 때는 실행할 SQL과 바인딩 할 파라미터를 넘겨주거나, 
+  쿼리 실행 결과를 어떤 객체에 넘겨 받을지를 지정만 하면 된다.
+- Spring JDBC를 사용하려면 먼저, DB 커넥션을 가져오는 DataSource 를 Bean으로 등록해야 한다.
+```
+##### DAO, DTO 란?
+```
+DAO(Data Access Object) 는 데이터베이스의 data에 접근하기 위한 객체입니다.
+DataBase에 접근 하기 위한 로직 & 비지니스 로직을 분리하기 위해 사용합니다.
+
+DTO(Data Transfer Object) 는 계층 간 데이터 교환을 하기 위해 사용하는 객체로, 
+DTO는 로직을 가지지 않는 순수한 데이터 객체(getter & setter 만 가진 클래스)입니다.
+
+VO(Value Object) 값 오브젝트로써 값을 위해 쓰입니다. 
+read-Only 특징(사용하는 도중에 변경 불가능하며 오직 읽기만 가능)을 가집니다.
+```
 ##### 동시성
 ```
 한 순간에 여러가지 일이 아니라, 짧은 전환으로 여러가지 일을 동시에 처리하는 것처럼 보이는 것.
