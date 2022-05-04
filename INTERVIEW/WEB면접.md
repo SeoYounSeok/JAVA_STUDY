@@ -97,9 +97,38 @@ HTTPS는 암호화, 증명서, 변조를 방지할 수 있습니다.
 ##### 토큰 기반 인증 
 ##### JWT
 ##### OAuth
-##### CORS란?
-##### CORS 해결방법
+##### CORS란? [인파 티스토리](https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-CORS-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95-%F0%9F%91%8F)
+```
+CORS 정책은 우리가 가져오는 리소스들이 안전한지 검사하는 관문이다.
+요악하면 프로토콜, 포트, 호스트중 하나라도 일치하지 않으면 Cross Origin 이라고 한다.
+
+* SOP(Same-Origin Policy) <동일 출처 정책>
+```
+![image](https://user-images.githubusercontent.com/43161245/166687023-aaa4a9ce-6050-44d8-a029-059a058c5f2f.png)
+```
+교차 출처 리소스 공유(Cross-Origin Resource Sharing, CORS)는,
+추가 HTTP 헤더를 사용하여, 한 출처에서 실행 중인 웹 애플리케이션이 다른 출처의 선택한 자원에 접근할 수 있는 권한을 부여하도록 브라우저에 알려주는 체제다.
+```
+##### CORS 해결방법 [구보현 ](https://bohyeon-n.github.io/deploy/web/cors.html)
+![image](https://user-images.githubusercontent.com/43161245/166696101-6d64ccd7-6b38-40fc-a76e-65424ffd5954.png)
+![image](https://user-images.githubusercontent.com/43161245/166695125-5670eb48-d6f0-49a5-98c5-5c9af08f2fa9.png)
+
 ##### JSON, XML의 차이
+```
+JSON과 XML의 공통점
+1. 둘 다 데이터를 저장하고 전달하기 위해 고안되었습니다.
+2. 둘 다 기계뿐만 아니라 사람도 쉽게 읽을 수 있습니다.
+3. 둘 다 계층적인 데이터 구조를 가집니다.
+4. 둘 다 다양한 프로그래밍 언어에 의해 파싱될 수 있습니다.
+5. 둘 다 XMLHttpRequest 객체를 이용하여 서버로부터 데이터를 전송받을 수 있습니다.
+
+JSON과 XML의 차이점
+1. JSON은 종료 태그를 사용하지 않습니다.
+2. JSON의 구문이 XML의 구문보다 더 짧습니다.
+3. JSON 데이터가 XML 데이터보다 더 빨리 읽고 쓸 수 있습니다.
+4. XML은 배열을 사용할 수 없지만, JSON은 배열을 사용할 수 있습니다.
+5. XML은 XML 파서로 파싱되며, JSON은 자바스크립트 표준 함수인 eval() 함수로 파싱됩니다
+```
 ##### MIME이란?
 ##### AWS란?
 
