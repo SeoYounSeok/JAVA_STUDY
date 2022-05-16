@@ -10,3 +10,6 @@
 * 그외?
  DB 세팅 부터 시작해서 맨 기반부터 스피드 있게 작업을 진행하려고 합니다.
 ```
+
+#### 참고 사이트
+###### [jojoldu](https://github.com/jojoldu/freelec-springboot2-webservice)
