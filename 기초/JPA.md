@@ -112,4 +112,9 @@ Example.builder()
 
 
 앞으로 모든 예제는 빌더 패턴을 적극적으로 사용하니 익히는 것에 중점을 둡시다.
+
+* 간단 팁
+  스프링 부트에서는 application.properties, application.yml 등의 파일에
+  한 줄의 코드로 설정할 수 있도록 지원하고 권장하니 이를 사용하겠습니다.
+  spring 프로젝트의 경우, src/main/resource > application.properties 파일을 생성해야 한다.
 ```
