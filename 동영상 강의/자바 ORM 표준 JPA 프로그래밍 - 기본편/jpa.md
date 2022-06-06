@@ -1,0 +1,57 @@
+##### JPA 소개
+
+```
+EJB - 엔티티 빈(자바 표준)
+> 하이버네이트(오픈 소스)
+> JPA(자바 표준) - 하이버네이트를 다듬고 정리해서 표준 스펙으로 정리한 느낌
+
+JPA는 표준 명세
+JPA는 인터페이스의 모음
+하이버네이트를 쓴다고 보면 된다.
+
+JPA 를 왜 사용해야 하는가?
+- SQL 중심적인 개발에서 객체 중심으로 개발
+
+- 생산성
+    저장 : jpa.persist(member)
+    조회 : Member member = jpa.find(memberId)
+    수정 : member.setName("변경할 이름") <= 와 이게 바로 되?
+    삭제 : jpa.remove(member)
+
+- 유지보수
+    JPA 필드만 추가하면 됨, SQL은 JPA 가 해결
+
+- 패러다임 불일치 해결
+    JPA와 상속
+    > 상속관계에 있는 테이블의 데이터를 저장을 하려면, insert 두 번을 작성해야만 한다.
+    > 그런 작업을 자동으로 JPA 에서 처리해준다.
+
+    JPA와 연관관계, 객체 그래프 탐색 가능 (DAO, .getName 등)
+
+- 성능
+    캐시와 동일성(identity) 보장
+        * 같은 트랜잭션 안에서는 같은 엔티티를 반환 - 약간의 조회 성능 향상
+        * DB Isolation Level이 Read Commit 이어도 애플리케이션에서 Repeatable Read 보장
+            String memberId = "100";
+            Member m1 = jpa.find(Member.class, memberId); // SQL
+            Member m2 = jpa.find(Member.class, memberId); // 캐시
+
+            println(m1 == m2) // 같음
+            * 캐시가 우리가 아는 그 캐시의 느낌은 아니다! (짧다.)
+            * 다만, SQL 1번만 실행되는 사실을 보자.
+
+    트랜잭션을 지원하는 쓰기 지연
+        1. 트랜잭션 커밋할 때까지 INSERT SQL을 모음
+        2. JDBC BATCH SQL 기능을 사용해서 한 번에 SQL 전송
+
+    지연 로딩
+        * 지연 로딩 : 객체가 실체 사용될 때 로딩
+        * 즉시 로딩 : JOINS SQL 로 한번에 연관된 객체까지 미리 조회
+            @ JPA 옵션을 통해서, 여러 테이블의 정보를 한꺼번에 가져온다.
+            (쿼리 네트워크 사용 횟 수를 줄인다.
+            )
+- 데이터 접근 추상화와 벤더 독립성
+- 표준
+
+! ORM은 객체와 RDB 두 기둥위에 있는 기술
+```
